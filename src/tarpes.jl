@@ -9,29 +9,22 @@ export tarpes_evolution, tarpes_evolution_heatmaps
     tarpes_evolution(A, delay_time=0.0, evolution_at=0.0; stack_dim=:delay, vertical_dim=:eV)
     tarpes_evolution(A, delay_index::Integer, evolution_at=0.0; ...)
 
-Extracts:
-1. The ARPES snapshot at `delay_time` (nearest sample in the `stack_dim`).
-2. The temporal evolution at the position(s) specified by `evolution_at` along the
-   non-dispersion axis.
+Return a snapshot and the temporal evolution extracted from a 3D time-resolved ARPES dataset.
 
 Arguments
-- A::AbstractDimArray{T,3}: Input 3D tr-ARPES dataset.
-- delay_time::Real: Time (same units as the `stack_dim`) at which to take the snapshot.
-- (delay_dim::Integer: Alternative to `delay_time`, index along the `stack_dim` at which to take the snapshot.)
-- evolution_at::Real or Tuple{center, width}: If Real, take the nearest coordinate along the
-  non-dispersion axis. If Tuple, interpreted as (center, width) and the evolution is averaged
-  over the window of width centered at center.
+- A::AbstractDimArray{T,3}: 3D tr-ARPES data with named dimensions (DimensionalData).
+- delay_time::Real: Delay time (same units as the `stack_dim`) for the snapshot. Alternatively use delay_index.
+- evolution_at::Real or Tuple{center, width}: If a scalar, select the nearest coordinate along the non-dispersion axis. If a (center, width) tuple, average over the window centered at `center` with the given `width`.
 - stack_dim::Symbol: Name of the time/delay dimension (default :delay).
-- vertical_dim::Symbol: Name of the vertical dispersion dimension (default :eV).
-- full_temporal::Bool: If true, the temporal evolution will include all time points in the dataset, otherwise it weill only include time points up to `delay_time`.
+- vertical_dim::Symbol: Name of the vertical (energy) dimension (default :eV).
+- full_temporal::Bool: If true, include the full time range for the temporal evolution; otherwise include only times <= `delay_time`.
 
 Returns
-- arpes_data_at_delay: 2D slice (non-dispersion × vertical) corresponding to the selected delay.
-- temporal_evolution_data: 2D array (stack × vertical) representing the evolution of intensity
-  at the selected non-dispersion coordinate(s) up to `delay_time` (values before or equal to delay_time).
+- arpes_data_at_delay::AbstractDimArray{T,2}: 2D slice (non-dispersion × vertical) at the chosen delay.
+- temporal_evolution_data::AbstractDimArray{T,2}: 2D array (time × vertical) with intensity evolution at the selected non-dispersion position(s).
 
 Notes
-- Uses DimensionalData indexing (Dim{...}(Near/Between)) to select slices.
+- Selection uses DimensionalData indexing (Dim{...}(Near/Between)).
 """
 function tarpes_evolution(
     A::AbstractDimArray{T,3} where {T},
@@ -82,30 +75,29 @@ end
     tarpes_evolution_heatmaps(A, delay_time=0.0, evolution_at=0.0; kwargs...)
     tarpes_evolution_heatmaps(A, delay_index::Integer, evolution_at=0.0; ...)
 
-Create a Makie Figure containing:
-- left: heatmap of the ARPES snapshot at `delay_time`.
-- right: heatmap of the temporal evolution at `evolution_at`.
-- rightmost: vertical colorbar.
+Create a Makie Figure showing an ARPES snapshot and the corresponding temporal evolution.
+
+Layout
+- Left: heatmap of the ARPES snapshot at `delay_time`.
+- Center: heatmap of the temporal evolution at `evolution_at`.
+- Right: vertical colorbar.
 
 Keyword arguments
-- stack_dim::Symbol, vertical_dim::Symbol: dimension names (defaults as above).
-- figure::NamedTuple: keyword arguments forwarded to `Figure`.
-- arpes_kwargs::NamedTuple: keyword arguments forwarded to the left Axis.
-- evolution_kwargs::NamedTuple: keyword arguments forwarded to the right Axis.
-- heatmap_kwargs::NamedTuple: keyword arguments forwarded to `heatmap!` (e.g. colorrange, colormap).
-    - Both heatmaps share the same keyword arguments.
-    - ex.) `colormap=:turbo`
-    - When log-scale is desired, use `colorscale=log10, colorrange=(vmin, vmax)`
-- colorbar_kwargs::NamedTuple: keyword arguments forwarded to the Colorbar.
-- full_temporal::Bool: If true, the temporal evolution heatmap will show the full time range of the dataset
+- stack_dim::Symbol, vertical_dim::Symbol: dimension names (defaults shown above).
+- figure::NamedTuple: forwarded to `Figure`.
+- arpes_kwargs::NamedTuple: forwarded to the left Axis.
+- evolution_kwargs::NamedTuple: forwarded to the center Axis.
+- heatmap_kwargs::NamedTuple: forwarded to `heatmap!` (e.g., colorrange, colormap). Both heatmaps share these settings. For log scale, use `colorscale=log10` with an explicit `colorrange`.
+- colorbar_kwargs::NamedTuple: forwarded to `Colorbar`.
+- full_temporal::Bool: If true, the evolution heatmap uses the full dataset time range; otherwise it is limited to times <= `delay_time`.
 
 Returns
-- fig: A Makie Figure object ready for display or further modification.
+- fig::Makie.Figure: A figure ready for display or further modification.
 
 Notes
-- By default, the heatmap colorrange is set to the extrema of the finite values in A.
-- If the current Makie backend supports transparency as checked by `Makie.current_backend()`,
-  axes and figure background are set to transparent by default.
+- By default, the heatmap colorrange uses the extrema of finite values in A.
+- When the current Makie backend supports transparency (checked via `Makie.current_backend()`),
+  the figure and axes backgrounds are set to transparent by default.
 """
 function tarpes_evolution_heatmaps(
     A::AbstractDimArray{T,3} where {T},
@@ -213,10 +205,9 @@ end
     _build_slice_data(A, non_dispersion_axis, evolution_at::Real)
     _build_slice_data(A, non_dispersion_axis, evolution_at::Tuple{center,width})
 
-Internal helper that returns A sliced at the nearest coordinate along `non_dispersion_axis`.
-When given (center, width) it averages A over the window
-[center - width/2, center + width/2] along `non_dispersion_axis` and removes
-that dimension, returning the reduced array.
+Internal helper. For a scalar `evolution_at`, select the nearest coordinate along
+`non_dispersion_axis`. For a `(center, width)` tuple, average A over the window
+[center - width/2, center + width/2] along `non_dispersion_axis` and drop that dimension.
 """
 function _build_slice_data(
     A::AbstractDimArray{T,3} where {T},
