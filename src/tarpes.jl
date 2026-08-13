@@ -38,16 +38,10 @@ function tarpes_evolution(
     non_dispersion_axis = otherdims(A, (vertical_dim, stack_dim)) |> first |> name
     arpes_data_at_delay = A[Dim{stack_dim}(Near(delay_time))]
 
-    temporal_evolution_data_full =
+    temporal_evolution_data =
         _build_slice_data(A, non_dispersion_axis, evolution_at) |>
-        x->permutedims(x, (stack_dim, vertical_dim))
-
-    if !full_temporal
-        temporal_evolution_data =
-            temporal_evolution_data_full[Dim{stack_dim}(Between(-Inf, delay_time))]
-    else
-        temporal_evolution_data = temproal_evolution_data_full
-    end
+        x->permutedims(x, (stack_dim, vertical_dim)) |>
+           x -> x[Dim{stack_dim}(Between(-Inf, full_temporal ? Inf : delay_time))]
 
     return arpes_data_at_delay, temporal_evolution_data
 end
