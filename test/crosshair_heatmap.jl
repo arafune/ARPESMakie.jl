@@ -34,7 +34,9 @@ using ARPESPlots
         data_log[1, 1] = 0.0
         A_log = ARPESData(data_log, (phi(range(-10, 10, 40)), eV(range(0, 5, 60))))
         @test_nowarn crosshair_heatmap(
-            A_log; axis_top = (yscale = log10,), axis_right = (xscale = log10,)
+            A_log;
+            axis_top = (yscale = log10,),
+            axis_right = (xscale = log10,),
         )
     end
 
