@@ -4,4 +4,5 @@ module ARPESPlots
 include("./waterfall.jl")
 include("./crosshair_heatmap.jl")
 include("./stitch.jl")
+include("./tarpes.jl")
 end
