@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Add `tarpes.jl`: `tarpes_evolution` and `tarpes_evolution_heatmaps` for time-resolved (tr-)ARPES snapshots and temporal-evolution heatmaps.
+- Add `tarpes.jl`: `tarpes_evolution_heatmaps` for time-resolved (tr-)ARPES snapshots and temporal-evolution heatmaps.
 - Tests: add `test/tarpes.jl` covering the new API and headless rendering of the heatmap figure.
 - Documentation: add `tarps.md` (documentation and docstrings updated for the new functions).
 
