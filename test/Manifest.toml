@@ -2,7 +2,7 @@
 
 julia_version = "1.12.6"
 manifest_format = "2.0"
-project_hash = "7d2e6cb05030f58f4ef2a37a8283734c2635d947"
+project_hash = "5359a348926f9d5ecf4e75dce985d72080205772"
 
 [[deps.ARPES]]
 deps = ["Dates", "DimensionalData", "Interfaces", "Interpolations", "LinearAlgebra", "LowLevelParticleFilters", "Statistics", "StringEncodings"]
