@@ -31,9 +31,9 @@ jobs:
           - windows-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: julia-actions/setup-julia@v2
+      - uses: julia-actions/setup-julia@v3
         with:
           version: ${{ matrix.version }}
 
@@ -69,7 +69,7 @@ jobs:
           name: coverage-html
           path: coverage_html
 
-      - uses: codecov/codecov-action@v6
+      - uses: codecov/codecov-action@v7
         if: matrix.version == '1.12' && matrix.os == 'ubuntu-latest'
         with:
           files: lcov.info
@@ -85,9 +85,9 @@ jobs:
       statuses: write
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
-      - uses: julia-actions/setup-julia@v2
+      - uses: julia-actions/setup-julia@v3
         with:
           version: "1"
 
