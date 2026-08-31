@@ -5,7 +5,7 @@ using DimensionalData: @dim
 using Statistics
 using Makie
 using ARPES
-using ARPESPlots: _make_colors
+using ARPESMakie: _make_colors
 
 # Force headless backend
 CairoMakie.activate!()

@@ -28,7 +28,7 @@ Main provided functions:
 ## Example
 
 ```julia
-using ARPESPlots, ARPES, DimensionalData, CairoMakie
+using ARPESMakie, ARPES, DimensionalData, CairoMakie
 
 # Assume `A` is an AbstractDimArray with dimensions (k, eV, delay)
 arpes_snapshot, evolution = tarpes_evolution(A, 0.0, (k_center, 0.05);
@@ -46,5 +46,6 @@ display(fig)
   names for dimensions, pass `stack_dim` and `vertical_dim` accordingly.
 
 ---
+
 This page was created from the docstrings and implementation in `src/tarpes.jl` to provide a short,
 English usage guide for the documentation site.

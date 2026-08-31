@@ -4,9 +4,9 @@ using DimensionalData: @dim
 using CairoMakie
 using ARPES
 using ARPES: ARPESData, kx, ky, kz, phi, psi, eV
-using ARPESPlots
+using ARPESMakie
 
-@testset "ARPESPlots Interactive Heatmap Tests" begin
+@testset "ARPESMakie Interactive Heatmap Tests" begin
 
     # Create Dummy Data
     data = rand(Float64, 40, 60)

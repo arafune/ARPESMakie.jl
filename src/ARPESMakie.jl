@@ -1,4 +1,4 @@
-module ARPESPlots
+module ARPESMakie
 
 # Write your package code here.
 include("./waterfall.jl")
