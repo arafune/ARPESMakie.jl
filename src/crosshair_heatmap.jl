@@ -58,7 +58,7 @@ heatmaps along `stack_dim` and adds a slider to step through the slices.
 
 **2D**
 ```julia
-using DimensionalData, ARPESPlots, GLMakie
+using DimensionalData, ARPESMakie, GLMakie
 
 A = DimArray(rand(100, 80), (Dim{:phi}(range(-10, 10, 100)), Dim{:eV}(range(0, 8, 80))))
 fig = crosshair_heatmap(A; colormap = :inferno)
@@ -67,7 +67,7 @@ display(fig)
 
 **3D**
 ```julia
-using DimensionalData, ARPESPlots, GLMakie
+using DimensionalData, ARPESMakie, GLMakie
 
 A = DimArray(
     rand(100, 80, 5),

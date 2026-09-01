@@ -1,14 +1,15 @@
 ```@meta
-CurrentModule = ARPESPlots
+CurrentModule = ARPESMakie
 ```
 
-# ARPESPlots
+# ARPESMakie
 
-Documentation for [ARPESPlots](https://github.com/arafune/ARPESPlots.jl).
+Documentation for [ARPESMakie](https://github.com/arafune/ARPESMakie.jl).
 
 ```@index
+
 ```
 
 ```@autodocs
-Modules = [ARPESPlots]
+Modules = [ARPESMakie]
 ```

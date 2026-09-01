@@ -1,4 +1,4 @@
-name = "ARPESPlots"
+name = "ARPESMakie"
 uuid = "b3deace3-0520-403d-8815-72b37f3f027a"
 version = "0.0.4"
 authors = ["Ryuichi Arafune"]

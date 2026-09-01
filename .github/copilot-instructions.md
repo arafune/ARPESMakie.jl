@@ -1,4 +1,4 @@
-# Copilot Instructions for ARPESPlots.jl
+# Copilot Instructions for ARPESMakie.jl
 
 ## Build, Test, and Lint
 
