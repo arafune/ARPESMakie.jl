@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.5] - Unreleased
 
+### Breaking changes
+
+- Name change: ARPESPlots -> ARPESMakie.jl
+
 ### Added
 
 - `tarpes_evolution_mp4(A, outpath; ...)`: new helper to create animations by iterating the `stack_dim` (default `:delay`) frames and writing a video file. When `transparent=false` it uses `Makie.record` for in-process encoding; when `transparent=true` it writes PNG frames (preserving alpha) and invokes `ffmpeg` to encode to an alpha-capable container.
