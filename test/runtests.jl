@@ -1,8 +1,8 @@
-using ARPESPlots
+using ARPESMakie
 using Test
 using Coverage
 
-@testset "ARPESPlots.jl" begin
+@testset "ARPESMakie.jl" begin
     @testset "test for crosshair_heatmap" begin    # Write your tests here.
         include("./crosshair_heatmap.jl")
         include("./waterfall.jl")

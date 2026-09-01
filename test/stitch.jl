@@ -1,5 +1,5 @@
 using Test
-using ARPESPlots
+using ARPESMakie
 using ARPES
 using DimensionalData
 using Makie
@@ -8,7 +8,7 @@ using CairoMakie # Required for headless CI environments
 # Ensure Makie doesn't try to open a window
 Makie.inline!(true)
 
-@testset "ARPESPlots.jl Tests" begin
+@testset "ARPESMakie.jl Tests" begin
 
     # --- Setup Mock Data ---
     # Create two overlapping DimArrays along the X dimension

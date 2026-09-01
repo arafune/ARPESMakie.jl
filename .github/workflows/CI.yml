@@ -114,6 +114,6 @@ jobs:
         shell: julia --project=docs --color=yes {0}
         run: |
           using Documenter: DocMeta, doctest
-          using ARPESPlots
-          DocMeta.setdocmeta!(ARPESPlots, :DocTestSetup, :(using ARPESPlots); recursive=true)
-          doctest(ARPESPlots)
+          using ARPESMakie
+          DocMeta.setdocmeta!(ARPESMakie, :DocTestSetup, :(using ARPESMakie); recursive=true)
+          doctest(ARPESMakie)
