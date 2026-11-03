@@ -2,7 +2,7 @@
 
 julia_version = "1.12.7"
 manifest_format = "2.0"
-project_hash = "f5c0554d8afcb5cb050fe24481f2ccb3e2107ce4"
+project_hash = "757ea3c3e6a2353aa40c1ea014691c57c5255393"
 
 [[deps.ARPES]]
 deps = ["Dates", "DimensionalData", "Interfaces", "Interpolations", "LinearAlgebra", "LowLevelParticleFilters", "Statistics", "StringEncodings"]
@@ -427,9 +427,9 @@ version = "1.16.0"
 
 [[deps.DimensionalData]]
 deps = ["ConstructionBase", "DataAPI", "Dates", "Extents", "Interfaces", "IntervalSets", "InvertedIndices", "IteratorInterfaceExtensions", "LinearAlgebra", "OrderedCollections", "PrecompileTools", "Random", "Statistics", "TableTraits", "Tables"]
-git-tree-sha1 = "3e5b58039d35b98f425446c099577d67633a7237"
+git-tree-sha1 = "035e85101299c015549de584af1b25e733b63e28"
 uuid = "0703355e-b756-11e9-17c0-8b28908087d0"
-version = "0.30.2"
+version = "0.30.3"
 
     [deps.DimensionalData.extensions]
     DimensionalDataAbstractFFTsExt = "AbstractFFTs"
@@ -444,6 +444,7 @@ version = "0.30.2"
     DimensionalDataPythonCallExt = "PythonCall"
     DimensionalDataRecipesBaseExt = "RecipesBase"
     DimensionalDataSparseArraysExt = "SparseArrays"
+    DimensionalDataStaticArraysCoreExt = "StaticArraysCore"
     DimensionalDataStatsBaseExt = "StatsBase"
 
     [deps.DimensionalData.weakdeps]
@@ -459,6 +460,7 @@ version = "0.30.2"
     PythonCall = "6099a3de-0909-46bc-b1f4-468b9a2dfc0d"
     RecipesBase = "3cdcf5f2-1ef4-517c-9805-6587b60abb01"
     SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+    StaticArraysCore = "1e83bf80-4336-4d27-bf5d-d5a4f845583c"
     StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 
 [[deps.Distributed]]
